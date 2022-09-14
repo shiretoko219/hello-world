@@ -8,23 +8,26 @@ public class NRMethod {
         double x0 = sc.nextDouble();
         System.out.println("请输入允许误差（小数）");
         double e = sc.nextDouble();
-        double x1 = x0-TheFunc(x0)/DevFunc(x0);
-
-        double[] ein = new double[2];  //数组，ein[0]储存计算误差和设置e比较，ein[1]负责储存计算结果
+        double x1 = x0 - TheFunc(x0) / DevFunc(x0);
+        System.out.println("结果为：");
+        System.out.println(NRMethod(x0,e,x1));
+        sc.close();
+}
+    public static double NRMethod(double x0,double e,double x1) {
+        Double ein0,ein1;  //ein0储存计算误差和设置e比较，ein1负责储存计算结果
         double x = x0;
-        double newx = x1;
+        double newX = x1;
         do {               //牛顿迭代法的计算
             double save;
-            save = newx;
-            newx = newx-((newx-x)/(TheFunc(newx)-TheFunc(x))*TheFunc(newx));
-            double miu = save-newx;
-            ein[0] = Math.abs(miu);
-            ein[1] = newx;
+            save = newX;
+            newX = newX-((newX-x)/(TheFunc(newX)-TheFunc(x))*TheFunc(newX));
+            double miu = save-newX;
+            ein0 = Math.abs(miu);
+            ein1 = newX;
         }
-        while (ein[0] < e);  //小于误差时，数出结果
+        while (ein0 < e);  //小于误差时，数出结果
         {
-            System.out.println("结果为：");
-            System.out.println(ein[1]);
+            return ein1;
         }
     }
     private static double TheFunc(double x){  //原函数
