@@ -14,7 +14,7 @@ public class NRMethod {
         sc.close();
 }
     public static double NRMethod(double x0,double e,double x1) {
-        Double ein0,ein1;  //ein0储存计算误差和设置e比较，ein1负责储存计算结果
+        Double ein0;  //ein0储存计算误差和设置e比较，ein1负责储存计算结果
         double x = x0;
         double newX = x1;
         do {               //牛顿迭代法的计算
@@ -23,11 +23,10 @@ public class NRMethod {
             newX = newX-((newX-x)/(TheFunc(newX)-TheFunc(x))*TheFunc(newX));
             double miu = save-newX;
             ein0 = Math.abs(miu);
-            ein1 = newX;
         }
-        while (ein0 < e);  //小于误差时，数出结果
+        while (ein0 >= e);  //小于误差时，数出结果
         {
-            return ein1;
+            return newX;
         }
     }
     private static double TheFunc(double x){  //原函数
