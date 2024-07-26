@@ -9,7 +9,7 @@ typedef struct LNode {
 void init_list(LinkList *L);
 void list_tail_insert(LinkList L, int x);
 void print_list(LinkList L);
-void find_middle(LinkList *L, LinkList *M);
+void find_middle(LinkList L, LinkList M);
 LinkList reverse(LinkList L);
 LinkList merge(LinkList L, LinkList M);
 
@@ -27,7 +27,7 @@ int main(void) {
     }
     printf("\n");
     print_list(L);
-    find_middle(&L,&M);
+    find_middle(L,M);
     print_list(L);
     print_list(M);
     print_list( reverse(M));
@@ -69,11 +69,11 @@ void print_list(LinkList L) {
 
 }
 
-void find_middle(LinkList *L, LinkList *M) {
+void find_middle(LinkList L, LinkList M) {
     LinkList ppre, pcur;
 
-    ppre = (*L)->next;
-    pcur = (*L)->next;
+    ppre = L->next;
+    pcur = L->next;
 
     while (pcur != NULL) {
         pcur = pcur->next;  //pcur先走一步看看
@@ -88,7 +88,7 @@ void find_middle(LinkList *L, LinkList *M) {
         }
     }
 
-    (*M)->next = ppre->next;  //把M头节点引导ppre->next上
+    M->next = ppre->next;  //把M头节点引导ppre->next上
     ppre->next = NULL;  //截断两个链表
 }
 
