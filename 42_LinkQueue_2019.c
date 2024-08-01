@@ -62,11 +62,12 @@ bool Enqueue(LinkQueue *Q, int num) {
         new->data = num;
         Q->rear->next = new;
         new->next = Q->front;
+        Q->rear = Q->rear->next;
         return true;
     }
 
-    Q->rear = Q->rear->next;
     Q->rear->data = num;
+    Q->rear = Q->rear->next;
     return true;
 }
 
