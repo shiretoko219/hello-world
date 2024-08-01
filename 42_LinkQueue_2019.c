@@ -28,15 +28,15 @@ int main(void) {
 }
 
 void init_queue(LinkQueue *Q) {
-    QueuePtr ptr = (QueuePtr)malloc(sizeof(QNode));
+    Q->front = (QueuePtr)malloc(sizeof(QNode));
 
-    if (ptr == NULL) {
+    if (Q->front == NULL) {
         perror("Memory allocation failed!");
         exit(1);
     }
 
-    Q->front = ptr;
-    Q->rear = ptr;
+    Q->rear = Q->front;
+    Q->rear->next = Q->front;
 }
 
 bool is_full(LinkQueue Q) {
