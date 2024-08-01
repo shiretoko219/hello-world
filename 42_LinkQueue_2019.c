@@ -87,7 +87,7 @@ void print_queue(LinkQueue Q) {
     QueuePtr mark = Q.front;
     printf("%d ", mark->data);
     mark = mark->next;
-    while (mark != Q.front) {
+    while (mark != Q.rear) {
         printf("%d ", mark->data);
         mark = mark->next;
     }
