@@ -40,7 +40,7 @@ void init_queue(LinkQueue *Q) {
 }
 
 bool is_full(LinkQueue Q) {
-    if (Q.front == Q.rear->next) {
+    if (Q.rear->next == Q.front) {
         return true;
     }
     return false;
@@ -59,10 +59,10 @@ bool Enqueue(LinkQueue *Q, int num) {
         if (new == NULL) {
             return false;
         }
-        new->data = num;
+        Q->rear->data = num;
         Q->rear->next = new;
         new->next = Q->front;
-        Q->rear = Q->rear->next;
+        Q->rear = new;
         return true;
     }
 
